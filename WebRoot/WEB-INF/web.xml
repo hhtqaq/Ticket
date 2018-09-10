@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>renwoxing</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <filter>
+  <filter-name>EncodingFilter</filter-name>
+  <filter-class>com.ecjtu.rwx.filter.EncodingFilter</filter-class>
+  <init-param>
+  <param-name>encoding</param-name>
+  <param-value>UTF-8</param-value>
+  </init-param>
+  </filter>
+  <filter-mapping>
+  <filter-name>EncodingFilter</filter-name>
+  <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <!-- 登录 -->
+  <filter>
+  <filter-name>LoginFilter</filter-name>
+  <filter-class>com.ecjtu.rwx.filter.LoginFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  <filter-name>LoginFilter</filter-name>
+  <url-pattern>/need/*</url-pattern>
+  </filter-mapping>
+  <servlet>
+  <servlet-name>needBooking</servlet-name>
+  <servlet-class>com.ecjtu.rwx.controller.NeedBookingController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>needBooking</servlet-name>
+  <url-pattern>/need/buying</url-pattern>
+  </servlet-mapping>
+  
+  
+</web-app>

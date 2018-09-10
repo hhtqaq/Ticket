@@ -1,0 +1,212 @@
+<%@ page contentType="text/html;charset=UTF-8" %>
+ <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/common.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/corptravel.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/enterprise.css" rel="stylesheet">
+<!--<link href="${pageContext.request.contextPath}/../js/icheck/skins/all.css" rel="stylesheet" type="text/css">-->
+<!-- IconFont图标 -->
+<link href="${pageContext.request.contextPath}/css/iconfont.css" rel="stylesheet">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+<!-- 兼容IE8 -->
+<!--[if lte IE 9]>
+<script type="text/javascript" src="${pageContext.request.contextPath}/../js/html5shiv.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/../js/respond.min.js"></script>
+<![endif]-->
+<!-- layer弹框 2.1 -->
+ <script src="${pageContext.request.contextPath}/js/jquery.form.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery-migrate-1.2.1.js"></script> 
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/layer/layer.js"></script>
+<!-- 日历控件 -->
+<script language="javascript" type="text/javascript" src="${pageContext.request.contextPath}/js/My97DatePicker/WdatePicker.js"></script>
+<script language="javascript" type="text/javascript" src="${pageContext.request.contextPath}/js/check.js"></script>
+<script language="javascript" type="text/javascript" src="${pageContext.request.contextPath}/js/RegisterValid.js"></script>
+<script type="text/javascript">
+function _change(){
+	var img=document.getElementById("img");
+	img.src="${pageContext.request.contextPath}/booking?method=VerifyCode&a="+new Date().getTime();
+}
+
+function dologin(){
+	var msg=$("#msg");
+	var option={
+	type:"POST",
+	url:"${pageContext.request.contextPath }/user?method=dologin",
+	success:function(data){
+	msg.empty();
+	if(data==1){
+	msg.attr("style","color:green;padding-left:200px");
+	var str=location.href;
+	msg.html("登录成功,1秒后自动返回<a href='"+str+"'>点击跳过</a>");	
+	window.setTimeout(function(){window.location.href=str;},1000)
+	}else if(data==0){
+	msg.attr("style","color:red;padding-left:200px");
+	msg.html("用户名或密码不匹配,请重新登录");
+	}else{
+	msg.attr("style","color:red;padding-left:200px");
+	msg.html("验证码错误，请重新输入");
+	}
+	}
+	};
+	$("#loginform").ajaxSubmit(option);
+	}
+
+
+function register(){
+	var msg=$("#registermsg");
+	var option={
+	type:"POST",
+	url:"${pageContext.request.contextPath }/user?method=register",
+	success:function(data){
+	msg.empty();
+	if(data==1){
+	msg.attr("style","color:green;padding-left:200px");
+	var str=location.href;
+	msg.html("注册成功！,3秒后自动返回<a href='"+str+"'>点击跳过</a>");	
+	window.setTimeout(function(){window.location.href=str;},2000)
+	}else if(data==0){
+	msg.attr("style","color:red;padding-left:200px");
+	msg.html("注册失败");
+	}
+	}
+	};
+	$("#registerform").ajaxSubmit(option);
+	}
+</script>
+<!--登录
+-->
+
+	<div class="modal fade" id="modal-container-975191" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+							<h4 class="modal-title" id="myModalLabel">
+								登录
+							</h4>
+						</div>
+						<div class="modal-body">
+					<span style="" id="msg"></span>
+							<FORM class="form-horizontal" role="form" id="loginform"  Method="post">
+ <div class="form-group">
+    <label for="firstname" class="col-sm-4 control-label">登录名称:</label>
+    <div class="col-sm-5">
+      <input type=text name="username"  class="form-control" id="firstname" placeholder="请输入名称">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputPassword" class="col-sm-4 control-label">密码:</label>
+    <div class="col-sm-5">
+      <input  type="password" name="password" class="form-control" id="inputPassword" placeholder="请输入密码">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="VerifyCode" class="col-sm-4 control-label">验证码:</label>
+    <div class="col-sm-3">
+      <input  type="text" name="VerifyCode" class="form-control" id="VerifyCode" placeholder="请输入验证码">
+    </div>
+     <label class="col-sm-1 control-label"><img id="img" src="${pageContext.request.contextPath }/booking?method=VerifyCode" style="width: 100px;height: 50px" onclick="_change()"></label>
+     <label class="col-sm-3 control-label" style="margin-top: 25px;"><a href="javascript:_change()">换一张</a></label>
+  </div>
+<div class="form-group">
+    <div class="col-sm-offset-7 col-sm-5" >
+      <button type="button" name="g" class="btn btn-default" onclick="dologin()" >提交</button>
+    </div>
+  </div>
+</Form>
+						</div>
+						<div class="modal-footer">
+							 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+<!--注册
+-->
+<div class="modal fade" id="modal-container-975192" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+							<h4 class="modal-title" id="myModalLabel">
+								注册
+							</h4>
+						</div>
+						<div class="modal-body">
+						<span style="" id="registermsg"></span>
+							<form class="form-horizontal" onsubmit="return checkAll()"
+				role="form" id="registerform"
+				method="post">
+				<div class="form-group">
+					<label class="col-sm-10 control-label">输入您的信息，会员名字必须由字母和数字组成，带*号项必须填写。</label>
+				</div>
+
+				<div class="form-group">
+					<label for="firstname" class="col-sm-4 control-label">会员名称:</label>
+					<div class="col-sm-5">
+						<input type="text" name="logname" onblur="checkLogname(this)"
+							class="form-control" id="firstname2" placeholder="请输入名称">
+					</div>
+					<label class="col-sm-3 control-label"><span id="sp2"
+						style="font-size: 13px;padding-right: 40px;color:red;">*</span></label>
+				</div>
+
+
+				<div class="form-group">
+					<label for="inputPassword" class="col-sm-4 control-label">设置密码:</label>
+					<div class="col-sm-5">
+						<input type=password name="password" class="form-control"
+							id="inputPassword2" placeholder="请输入密码" oninput=checkLevel(this)>
+					</div>
+					<label class="col-sm-3 control-label"><span
+					style="font-size: 10px;padding-right: 40px;color:red;" id="pwd2">*</span></label>
+				
+				</div>
+				<div id="password"></div>
+
+				<div class="form-group">
+					<label class="col-sm-4 control-label">确认密码:</label>
+					<div class="col-sm-5">
+						<input type="password" name="checkpassword" placeholder="请输入确认密码"
+						id="checkpassword"	class="form-control">
+					</div>
+					<label class="col-sm-3 control-label"><span
+						style="font-size: 13px;padding-right: 40px;color:red;" id="checkmessage">*</span></label>
+				</div>
+
+				<div class="form-group">
+					<label for="phone" class="col-sm-4 control-label">联系电话:</label>
+					<div class="col-sm-5">
+						<input type="text" name="phone" class="form-control" id="phone2"
+							placeholder="请输入联系电话">
+					</div>
+					<label class="col-sm-3 control-label"><span id="phonemsg2"
+						style="font-size: 13px;padding-right: 40px;"></span></label>
+				</div>
+				
+				<div class="form-group">
+					<div class="col-sm-offset-7 col-sm-8">
+						<button type="button" class="btn btn-default" onclick="register()">提交</button>
+					</div>
+				</div>
+			</form>
+						</div>
+						<div class="modal-footer">
+							 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+<!-- 列表结束 -->
+
+<script type="text/javascript"> 
+$(document).ready(function(){
+$(".flip").click(function(){
+    $(".panel").slideToggle("");
+  });
+});
+</script>

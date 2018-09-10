@@ -1,0 +1,14 @@
+eclipse.preferences.version=1
+encoding//WebRoot/WEB-INF/adminpages=UTF-8
+encoding//WebRoot/WEB-INF/adminpages/customer/listCustomer.jsp=UTF-8
+encoding//WebRoot/WEB-INF/adminpages/customer/queryCustomer.jsp=UTF-8
+encoding//WebRoot/WEB-INF/adminpages/flight/addOrEditFlight.jsp=UTF-8
+encoding//WebRoot/WEB-INF/adminpages/frame.jsp=UTF-8
+encoding//WebRoot/WEB-INF/adminpages/frame/left.jsp=UTF-8
+encoding//WebRoot/WEB-INF/adminpages/frame/left1.jsp=UTF-8
+encoding//WebRoot/WEB-INF/adminpages/frame/left2.jsp=UTF-8
+encoding//WebRoot/WEB-INF/adminpages/frame/right.jsp=UTF-8
+encoding//WebRoot/WEB-INF/adminpages/login.jsp=UTF-8
+encoding//WebRoot/head.txt=UTF-8
+encoding/<project>=UTF-8
+separateDerivedEncodings=true
